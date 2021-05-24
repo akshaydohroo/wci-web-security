@@ -1,0 +1,12 @@
+.nav-items>*{
+    margin: 0 calc(1vw + 1vh);
+}
+.nav-items>*:hover,.nav-items>*:focus{
+    color: var(--primary) !important;
+}
+.nav-items{
+    margin-right: auto;
+}
+.toggle-btn:hover{
+    border-color: var(--secondary) !important;
+}
