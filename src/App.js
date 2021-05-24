@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
 import NavBar from "./ui-components/NavBar";
 function App() {
-    return (
-        <NavBar/>
-    )
+  return (
+    <>
+
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
