@@ -1,16 +1,19 @@
 .nav-items > * {
   margin: 0 calc(1vw + 1vh);
 }
-.nav-items *:hover,
-.nav-items *:active {
+.nav-items>*:hover,
+.nav-items>*:active {
   color: var(--primary) !important;
 }
 .nav-items {
   margin-right: auto;
 }
 .toggle-btn:hover,
-.toggle-btn:active {
-  border-color: var(--secondary) !important;
+.toggle-btn:hover span,
+.toggle-btn:active,
+.toggle-btn:active span {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important ;
 }
 
 .search-form {
@@ -23,17 +26,37 @@
   justify-content: center;
   
 }*/
-.search-form-button>svg {
+.search-form-button > svg {
   position: relative;
   bottom: 2px;
-} 
-.search-form-control{
-    width: calc(110px + 3vw) !important;
 }
-.app-nav{
+.search-form-control {
+  width: calc(110px + 3vw) !important;
+}
+.app-nav {
   position: sticky !important;
   top: 0px;
   z-index: 100;
+}
+.nav-small-dropdown {
+  display: none !important;
+}
+.nav-small-dropdown>button{
+  font-size: calc(6px + 1vh + 1vw);
+  font-weight: 600;
+}
+.nav-small-dropdown>div>a{
+  color: #767676 !important;
+  text-decoration: none !important;
+  border: none;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  margin: calc(2px + 1vh);
+}
+.nav-small-dropdown>div>a:hover{
+  color: var(--primary) !important;
 }
 @media (max-width: 992px) {
   .toggle-btn {
@@ -42,17 +65,17 @@
   .collapse-content {
     order: 2;
   }
-  .nav-items > *:hover,
-  .nav-items > *:active {
-    font-size: larger;
+  .nav-items {
+    font-size: calc(8px + 1vw + 1vh);
+    align-items: center;
   }
-  .nav-items{
-      font-size: larger;
-      align-items: center;
+  .nav-small-dropdown {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  .nav-items> *{
-      width: fit-content;
-
+  .nav-dropdown {
+    display: none !important;
   }
 }
-
