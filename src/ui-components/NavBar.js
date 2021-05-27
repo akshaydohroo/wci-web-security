@@ -5,16 +5,55 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
 import { IoLogoPlaystation } from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
+import Collapse from "react-bootstrap/Collapse";
 import styles from "./NavBar.module.css";
 function NavBar() {
+  const navHeight = React.useRef(null);
+  // const [hasBackgroundColor, setBackGroundColor] = React.useState(false);
+ 
+
+  const [collapse, setCollapse] = React.useState(true);
+  const onClickCollapseHandler = () => {
+    setCollapse((oldValue) => {
+      return !oldValue;
+    });
+  };
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(event);
+  };
+  const [colorChange, setColorchange] = React.useState(false);
+  const changeNavbarColor = () =>{
+     if(window.scrollY >= 10){
+       setColorchange(true);
+     }
+     else{
+       setColorchange(false);
+     }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
   return (
-    <Navbar bg="none" expand="lg" variant="light">
-      <Navbar.Brand href="#home" className="ml-2" >
+    <Navbar
+      expand="lg"
+      variant="light"
+      className={styles["app-nav"]}
+      ref={navHeight}
+      {...colorChange ? {bg:"light"}:{bg:"none"}}
+    >
+      <Navbar.Brand href="#home" className="ml-2">
         <IoLogoPlaystation size={38} />
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles['toggle-btn']}/>
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        className={styles["toggle-btn"]}
+      />
+      <Navbar.Collapse
+        id="basic-navbar-nav"
+        className={styles["collapse-content"]}
+      >
         <Nav className={styles["nav-items"]}>
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#link">About</Nav.Link>
@@ -32,11 +71,30 @@ function NavBar() {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
       </Navbar.Collapse>
+    
+      <Form inline className={styles["search-form"]} onSubmit={onSubmitHandler}>
+        <InputGroup>
+          <Collapse in={collapse} dimension="width" style={{transitionDuration:"1s"}}>
+            <div>
+              <FormControl
+                id="inlineFormInputGroup"
+                placeholder="Username"
+                className={styles["search-form-control"]}
+              />
+            </div>
+          </Collapse>
+          <InputGroup.Append className={styles["search-form-input-group"]}>
+            <Button
+              variant="outline-primary"
+              onClick={onClickCollapseHandler}
+              className={styles["search-form-button"]}
+            >
+              <FaSearch />
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Form>
     </Navbar>
   );
 }
