@@ -14,17 +14,17 @@ import styles from "./NavBar.module.css";
 function NavBar() {
   const [collapse, setCollapse] = React.useState(true);
   const [colorChange, setColorchange] = React.useState(false);
-  const [dropdownCollapse,setdropdownCollapse] = React.useState(false);
+  const [dropdownCollapse, setdropdownCollapse] = React.useState(false);
   const onClickCollapseHandler = () => {
     setCollapse((oldValue) => {
       return !oldValue;
     });
   };
-  const onClickDropdownCollapseHandler=()=>{
+  const onClickDropdownCollapseHandler = () => {
     setdropdownCollapse((oldValue) => {
       return !oldValue;
     });
-  }
+  };
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log(event);
@@ -76,35 +76,34 @@ function NavBar() {
             </NavDropdown.Item>
           </NavDropdown>
           <div className={styles["nav-small-dropdown"]}>
-            <Button variant="outline-primary" onClick={onClickDropdownCollapseHandler}>Dropdown &#8681;</Button>
+            <Button
+              variant="outline-primary"
+              onClick={onClickDropdownCollapseHandler}
+            >
+              Dropdown &#8681;
+            </Button>
             <Collapse in={dropdownCollapse}>
-            <ListGroup variant="flush">
-              <ListGroup.Item as="a">Cras justo odio</ListGroup.Item>
-              <ListGroup.Item as="a">Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item as="a">Morbi leo risus</ListGroup.Item>
-              <ListGroup.Item as="a">Porta ac consectetur ac</ListGroup.Item>
-              <ListGroup.Item as="a">Vestibulum at eros</ListGroup.Item>
-            </ListGroup>
+              <ListGroup variant="flush">
+                <ListGroup.Item as="a">Cras justo odio</ListGroup.Item>
+                <ListGroup.Item as="a">Dapibus ac facilisis in</ListGroup.Item>
+                <ListGroup.Item as="a">Morbi leo risus</ListGroup.Item>
+                <ListGroup.Item as="a">Porta ac consectetur ac</ListGroup.Item>
+                <ListGroup.Item as="a">Vestibulum at eros</ListGroup.Item>
+              </ListGroup>
             </Collapse>
           </div>
         </Nav>
       </Navbar.Collapse>
 
       <Form inline className={styles["search-form"]} onSubmit={onSubmitHandler}>
-        <InputGroup>
-          <Collapse
-            in={collapse}
-            dimension="width"
-            style={{ transitionDuration: "1s" }}
-          >
-            <div>
-              <FormControl
-                id="inlineFormInputGroup"
-                placeholder="Search"
-                className={styles["search-form-control"]}
-              />
-            </div>
-          </Collapse>
+        <InputGroup >
+          <div>
+            <FormControl
+              id="inlineFormInputGroup"
+              placeholder="Search"
+              className={`${styles["search-form-control"]} ${collapse && styles["inputCollapse-collapsed"]}`}
+            />
+          </div>
           <InputGroup.Append className={styles["search-form-input-group"]}>
             <Button
               variant="outline-primary"
